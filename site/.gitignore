@@ -1,0 +1,12 @@
+Ignorar a pasta de dependências do Node.js
+Esta pasta pode ter milhares de ficheiros e é instalada automaticamente na hospedagem.
+/backend/node_modules/
+
+O MAIS IMPORTANTE: Ignorar o ficheiro com as nossas senhas e chaves secretas.
+NUNCA envie este ficheiro para um repositório público.
+/backend/.env
+
+Ficheiros de log que o npm pode gerar
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zaad Store - Carrinho</title>
+    
+    <link rel="icon" type="image/png" href="/assets/logo.png">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="/styles/style.css">
+</head>
+<body class="bg-black text-gray-400">
+
+    <div class="container mx-auto p-4 flex flex-col min-h-screen">
+
+        <!-- ========= CABEÇALHO PADRÃO ========= -->
+        <header class="flex justify-between items-center py-4">
+             <div>
+                <a href="/index.html" class="text-2xl font-bold text-white flex items-center">
+                    <img src="/assets/logo.png" alt="Logo Zaad Store" class="h-8 w-8 mr-2 rounded">
+                    Zaad Store
+                </a>
+            </div>
+            <nav class="hidden md:flex items-center space-x-6">
+                <a href="/index.html" class="nav-link hover:text-white transition-colors">Início</a>
+                <a href="/loja.html" class="nav-link hover:text-white transition-colors">Loja</a>
+                <a href="https://discord.gg/Qabs7GKgTb" target="_blank" class="hover:text-white transition-colors">Contato</a>
+            </nav>
+            <div class="flex items-center gap-4">
+                 <a href="/carrinho.html" class="relative p-2 bg-gray-800 rounded-full transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-300"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                    <span id="cart-item-count" class="hidden absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">0</span>
+                </a>
+                <a href="/login.html" class="hidden md:inline-block bg-white text-black font-semibold px-5 py-2 rounded-lg hover:bg-gray-300 transition-colors">
+                    Login / Cadastro
+                </a>
+                <button id="mobile-menu-button" class="md:hidden p-2 rounded-md hover:bg-gray-800">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" /></svg>
+                </button>
+            </div>
+        </header>
+        
+        <!-- MENU MOBILE -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-900 bg-opacity-50 border border-gray-700 rounded-lg mt-2">
+            <!-- (O seu menu mobile atual continua aqui) -->
+        </div>
+
+        <!-- ========= NOVO DESIGN DO CARRINHO (DUAS COLUNAS) ========= -->
+        <main class="flex-grow py-12">
+            <h1 class="text-3xl font-bold text-white text-center mb-10">Finalize a sua Compra</h1>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+                
+                <!-- Coluna da Esquerda: Itens e Pagamento -->
+                <div id="left-column">
+                    <!-- Itens do Carrinho (Visível por defeito) -->
+                    <div id="cart-items-section">
+                        <h2 class="text-xl font-bold text-white mb-4">Seu Pedido</h2>
+                        <div id="cart-items-container" class="glass-effect rounded-xl p-6 space-y-4 min-h-[150px]">
+                            <p id="empty-cart-message" class="text-gray-400">O seu carrinho está vazio.</p>
+                            <!-- O JavaScript vai inserir os itens do carrinho aqui -->
+                        </div>
+                    </div>
+
+                    <!-- Secção do PIX (Inicialmente escondida) -->
+                    <div id="pix-payment-section" class="hidden">
+                        <h2 class="text-xl font-bold text-white mb-4">Pagamento via Pix</h2>
+                        <div class="glass-effect rounded-xl p-8 text-center">
+                             <p class="text-sm text-gray-400 mb-4">
+                                Leia o QR Code com o valor de <strong id="pix-total-value" class="text-white"></strong>.
+                            </p>
+                            <img src="/assets/pix_qrcode.jpg" alt="QR Code Pix" class="mx-auto rounded-lg w-48 h-48">
+                            
+                            <p class="text-sm text-gray-400 my-4">Ou use o Pix Copia e Cola:</p>
+                            <div class="relative">
+                                <input id="pix-code-input" type="text" readonly value="00020101021126360014br.gov.bcb.pix0114+55199918843455204000053039865802BR5917TALITA O DO PRADO6006SUMARE62070503***63046FAB" class="w-full bg-gray-800 border border-gray-700 text-gray-300 text-sm rounded-lg p-2 pr-10 text-center">
+                                <button id="copy-pix-button" title="Copiar Código" class="absolute top-1/2 right-2 -translate-y-1/2 p-1 text-gray-400 hover:text-white">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                                </button>
+                            </div>
+                             <p class="text-xs text-gray-500 mt-4">Após o pagamento, Abra um ticket em nossa loja para resgatar o produto!.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Coluna da Direita: Resumo do Pedido -->
+                <div class="lg:col-span-1">
+                     <h2 class="text-xl font-bold text-white mb-4">Resumo</h2>
+                    <div class="glass-effect rounded-xl p-8 sticky top-8">
+                        <div class="space-y-3 text-gray-300">
+                            <div class="flex justify-between">
+                                <span>Subtotal</span>
+                                <span id="cart-subtotal">R$ 0,00</span>
+                            </div>
+                            <div class="flex justify-between text-white font-bold text-lg pt-3 border-t border-gray-700">
+                                <span>Total a Pagar</span>
+                                <span id="cart-total">R$ 0,00</span>
+                            </div>
+                        </div>
+                        <button id="show-pix-button" class="mt-8 w-full bg-cyan-500 text-black font-bold p-3 rounded-lg hover:bg-cyan-400 transition-colors disabled:bg-gray-600 disabled:cursor-not-allowed">
+                            Continuar para Pagamento
+                        </button>
+                        <button id="back-to-cart-button" class="hidden mt-4 w-full text-sm text-gray-400 hover:text-white transition-colors">
+                            Voltar e editar pedido
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+
+        <footer class="text-center py-6 mt-auto">
+            <p class="text-gray-600">&copy; 2025 Zaad Store. Todos os direitos reservados.</p>
+        </footer>
+    </div>
+    
+    <div id="notification"></div>
+    <script src="/scripts/script.js" defer></script>
+</body>
+</html>
+

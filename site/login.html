@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zaad Store - Login & Cadastro</title>
+    
+    <link rel="icon" type="image/png" href="/assets/logo.png">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="/styles/style.css">
+</head>
+<body class="bg-black text-gray-400">
+
+    <div class="container mx-auto p-4 flex flex-col min-h-screen">
+
+        
+        <header class="flex justify-between items-center py-4">
+            <div>
+                <a href="/index.html" class="text-2xl font-bold text-white flex items-center">
+                    <img src="/assets/logo.png" alt="Logo Zaad Store" class="h-8 w-8 mr-2 rounded">
+                    Zaad Store
+                </a>
+            </div>
+            <nav class="hidden md:flex items-center space-x-6">
+                <a href="/index.html" class="nav-link hover:text-white transition-colors">Início</a>
+                <a href="/loja.html" class="nav-link hover:text-white transition-colors">Loja</a>
+                <a href="https://discord.gg/Qabs7GKgTb" target="_blank" class="hover:text-white transition-colors">Contato</a>
+            </nav>
+            <div class="flex items-center gap-4">
+                 <a href="/carrinho.html" class="relative p-2 hover:bg-gray-800 rounded-full transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-300"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                    <span id="cart-item-count" class="hidden absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">0</span>
+                </a>
+                <a href="/login.html" class="hidden md:inline-block bg-white text-black font-semibold px-5 py-2 rounded-lg hover:bg-gray-300 transition-colors">
+                    Login / Cadastro
+                </a>
+                <button id="mobile-menu-button" class="md:hidden p-2 rounded-md hover:bg-gray-800">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" /></svg>
+                </button>
+            </div>
+        </header>
+
+        
+        <main class="flex-grow flex flex-col items-center justify-center text-center py-10">
+            <div id="login-form-container" class="glass-effect rounded-2xl p-8 md:p-12 w-full max-w-md">
+                <div id="login-view">
+                    <h2 class="text-3xl font-bold text-white mb-2">Acesse Sua Conta</h2>
+                    <p class="text-gray-400 mb-8">Bem-vindo de volta!</p>
+                    <form>
+                        <div class="space-y-4 text-left">
+                            <div>
+                                <label for="login-email" class="block mb-2 text-sm font-medium text-gray-300">Email</label>
+                                <input type="email" id="login-email" class="form-input" placeholder="seu@email.com" required>
+                            </div>
+                            <div>
+                                <label for="login-password" class="block mb-2 text-sm font-medium text-gray-300">Senha</label>
+                                <input type="password" id="login-password" class="form-input" placeholder="••••••••" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="w-full mt-8 bg-white text-black font-semibold px-6 py-3 rounded-lg hover:bg-gray-300 transition-colors">Entrar</button>
+                    </form>
+                    <p class="text-sm text-gray-400 mt-6">Não tem uma conta? <a href="#" id="switch-to-register" class="font-medium text-white hover:underline">Registe-se</a></p>
+                </div>
+                <div id="register-view" class="hidden">
+                     <h2 class="text-3xl font-bold text-white mb-2">Crie a sua Conta</h2>
+                    <p class="text-gray-400 mb-8">É rápido e fácil.</p>
+                    <form>
+                        <div class="space-y-4 text-left">
+                           <div><label for="register-email" class="block mb-2 text-sm font-medium text-gray-300">Email</label><input type="email" id="register-email" class="form-input" placeholder="seu@email.com" required></div>
+                           <div><label for="register-password" class="block mb-2 text-sm font-medium text-gray-300">Senha</label><input type="password" id="register-password" class="form-input" placeholder="••••••••" required></div>
+                           <div><label for="confirm-password" class="block mb-2 text-sm font-medium text-gray-300">Confirmar Senha</label><input type="password" id="confirm-password" class="form-input" placeholder="••••••••" required></div>
+                        </div>
+                        <button type="submit" class="w-full mt-8 bg-white text-black font-semibold px-6 py-3 rounded-lg hover:bg-gray-300 transition-colors">Criar Conta</button>
+                    </form>
+                    <p class="text-sm text-gray-400 mt-6">Já tem uma conta? <a href="#" id="switch-to-login" class="font-medium text-white hover:underline">Faça login</a></p>
+                </div>
+                <div class="my-6 flex items-center"><hr class="w-full border-gray-700"><span class="px-2 text-xs text-gray-500">OU</span><hr class="w-full border-gray-700"></div>
+                <a href="#" id="discord-login-btn" class="w-full flex items-center justify-center gap-3 bg-indigo-500 text-white font-semibold px-6 py-3 rounded-lg hover:bg-indigo-600 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.36981C18.2769 3.40939 16.1252 2.83447 13.8763 2.65178C13.8763 2.65178 13.8413 2.68676 13.8238 2.72175C12.4836 3.12154 11.2688 3.73123 10.1592 4.36981C8.25741 5.48918 6.64133 7.02859 5.29295 8.84797C5.29295 8.84797 5.27546 8.86546 5.27546 8.88295C4.04316 12.3551 4.54295 15.6923 5.29295 18.2384C5.29295 18.2384 5.31044 18.2559 5.32793 18.2559C6.94401 19.3403 8.64757 20.1601 10.4186 20.735C10.4186 20.735 10.4536 20.7175 10.4711 20.6825C10.2212 20.2128 10.0063 19.7256 9.82637 19.2209C9.82637 19.2209 9.80888 19.2034 9.82637 19.1859C9.57648 19.0984 9.34408 18.9934 9.11168 18.8884C9.11168 18.8884 9.09419 18.8709 9.11168 18.8359C10.8828 17.9228 12.3539 16.5376 13.3688 14.8698C13.3688 14.8698 13.3863 14.8523 13.4038 14.8698C13.8563 15.2197 14.3438 15.5346 14.8663 15.8146C14.8663 15.8146 14.9013 15.8321 14.9188 15.7971C16.8905 13.9777 18.2656 11.6685 18.9981 8.95541C18.9981 8.95541 18.9981 8.93792 18.9806 8.92043C18.0675 7.15555 16.6924 5.75283 14.9188 4.70473C14.9188 4.70473 14.8838 4.67 14.9013 4.6525C15.7864 4.49257 16.654 4.36759 17.5041 4.2951C20.317 4.36981 20.317 4.36981 20.317 4.36981ZM10.1942 13.6781C9.22926 13.6781 8.42178 12.8707 8.42178 11.8883C8.42178 10.9059 9.21177 10.116 10.1942 10.116C11.1766 10.116 11.9841 10.9059 11.9666 11.8883C11.9666 12.8707 11.1766 13.6781 10.1942 13.6781ZM14.9188 13.6781C13.9538 13.6781 13.1463 12.8707 13.1463 11.8883C13.1463 10.9059 13.9363 10.116 14.9188 10.116C15.9012 10.116 16.7087 10.9059 16.6912 11.8883C16.6912 12.8707 15.9012 13.6781 14.9188 13.6781Z"/></svg>
+                    Continuar com Discord
+                </a>
+            </div>
+        </main>
+
+        <footer class="text-center py-6 mt-auto">
+            <p class="text-gray-600">&copy; 2025 Zaad Store. Todos os direitos reservados.</p>
+        </footer>
+    </div>
+    
+    <div id="notification"></div>
+ 
+    <script src="/scripts/script.js" defer></script>
+</body>
+</html>
+
