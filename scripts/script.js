@@ -1,3 +1,7 @@
+// ***** A MUDANÇA FINAL ESTÁ AQUI *****
+// Substitua 'seu-backend.onrender.com' pelo seu link real do Render
+const API_BASE_URL = 'https://zaad-store.onrender.com';
+
 // Espera o conteúdo da página carregar completamente
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -151,7 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
             showPixButton.textContent = 'A gerar QR Code...';
             const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
             try {
-                const response = await fetch('http://localhost:3000/api/create-payment', {
+                const response = await fetch(`${API_BASE_URL}/api/create-payment`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -196,7 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function startPollingOrderStatus(orderId) {
         const interval = setInterval(async () => {
             try {
-                const response = await fetch(`http://localhost:3000/api/order-status/${orderId}`);
+                const response = await fetch(`${API_BASE_URL}/api/order-status/${orderId}`);
                 const data = await response.json();
                 if (data.status === 'paid') {
                     clearInterval(interval);
@@ -331,7 +335,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (discordLoginBtn) {
             discordLoginBtn.addEventListener('click', (e) => {
                 e.preventDefault();
-                window.location.href = 'http://localhost:3000/api/auth/discord';
+                window.location.href = `${API_BASE_URL}/api/auth/discord`;
             });
         }
         
@@ -359,7 +363,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
             try {
-                const response = await fetch('http://localhost:3000/api/auth/register', {
+                const response = await fetch(`${API_BASE_URL}/api/auth/register`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ email, password })
@@ -380,7 +384,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const email = document.getElementById('login-email').value;
             const password = document.getElementById('login-password').value;
             try {
-                const response = await fetch('http://localhost:3000/api/auth/login', {
+                const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ email, password })
@@ -414,7 +418,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!ordersContainer) return;
         
         try {
-            const response = await fetch('http://localhost:3000/api/my-orders', {
+            const response = await fetch(`${API_BASE_URL}/api/my-orders`, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             if (!response.ok) throw new Error('Não foi possível obter as suas compras.');
@@ -428,7 +432,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (orders.length === 0) {
                 placeholder.textContent = 'Você ainda não fez nenhuma compra.';
             } else {
-                if (placeholder) placeholder.remove(); // Remove o texto de "placeholder"
+                if (placeholder) placeholder.remove();
                 orders.forEach(order => {
                     const orderElement = document.createElement('div');
                     orderElement.className = 'border-b border-gray-700 pb-3';
